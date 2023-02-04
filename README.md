@@ -1,2 +1,2 @@
 # MT_base
-We are learning
+Pipeline for the training
