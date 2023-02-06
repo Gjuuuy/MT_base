@@ -38,11 +38,12 @@ def daba_base_model_create(source, target, bam2fr=True, model_type="bpe", vocab_
 
     if(bam2fr):
         tokens = util.tokenize_line(content1)
+        #tokens_1 = util.tokenize_line(content2)
     else:
         tokens = []
 
     spm_trainer(source, "source", vocab_size, model_type, tokens)
-    spm_trainer(target, "target", vocab_size, model_type, []) 
+    spm_trainer(target, "target", vocab_size, model_type,[]) 
 
 if __name__ == '__main__':
     """ """
@@ -52,7 +53,16 @@ if __name__ == '__main__':
     vocab = args[3] # vocab size
     mode_type = args[4]
 
+    try :
+        daba_ = int(args[5])
+
+        if (daba_ == 1) :
+            boole = True
+
+    except IndexError :
+        boole = None
+
     daba_base_model_create(
         source, target,
-        bam2fr=None, model_type=mode_type,
+        bam2fr=boole, model_type=mode_type,
         vocab_size=vocab)
